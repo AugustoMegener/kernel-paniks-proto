@@ -8,6 +8,7 @@
   in {
     packages.${system}.default = pkgs.runCommand "build-project" { } ''
       mkdir -p $out/${meta.version}
+      chmod -R u+w proto/
       tar -cf $out/${meta.version}/kernel-paniks-proto-${meta.version}.tar \
         -C ${self} proto/
     '';
