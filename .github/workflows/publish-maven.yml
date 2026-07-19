@@ -26,16 +26,12 @@ jobs:
       - name: Build
         run: nix build -L
 
-      - name: Get version from Cargo.toml
-        id: version
-        uses: dante-signal31/rust-app-version@v1.2.0
 
       - name: Update site
         run: |
           mkdir -p site/augustomegener || true          
-          mkdir -p site/augustomegener/kernel-paniks-orchestrator || true          
-          mkdir -p site/augustomegener/kernel-paniks-orchestrator/${{ steps.version.outputs.app_version }}
-          cp -r result/bin/kernel-paniks-orchestrator site/augustomegener/kernel-paniks-orchestrator/${{ steps.version.outputs.app_version }}/kernel-paniks-orchestrator-${{ steps.version.outputs.app_version }}
+          mkdir -p site/augustomegener/kernel-paniks-proto || true          
+          cp -r result/* site/augustomegener/kernel-paniks-proto/
           cd ./site
           git config user.name "augustomegener"
           git config user.email "76854495+AugustoMegener@users.noreply.github.com"
